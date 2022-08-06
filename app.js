@@ -1,10 +1,11 @@
 require('dotenv').config();
 
-
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
+const sessionConfig = require('./config/session.config');
+const flash = require("connect-flash");
 
 require('./config/db.config');
 const app = express();
@@ -13,7 +14,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(flash()); // to show flash message after submit form
+app.use(sessionConfig); // need it to use flash
 
+app.use((req, res, next) => {
+  res.locals.flashMessage = req.flash('flashMessage');
+  next();
+});
 /* Routes */
 
 const routes = require('./config/routes');
@@ -22,6 +29,7 @@ app.use('/api', routes);
 app.get('/', cors(), function (req, res, next) {
     res.json('This is CORS-enabled for a Single Route')
   })
+
 
 /* Handle errors */
 
