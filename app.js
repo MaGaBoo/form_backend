@@ -1,20 +1,27 @@
 require('dotenv').config();
 
+
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const express = require('express');
+const cors = require('cors');
 
 require('./config/db.config');
 const app = express();
 
 /* Middlewares */
 
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 
 /* Routes */
 
 const routes = require('./config/routes');
 app.use('/api', routes);
+
+app.get('/', cors(), function (req, res, next) {
+    res.json('This is CORS-enabled for a Single Route')
+  })
 
 /* Handle errors */
 

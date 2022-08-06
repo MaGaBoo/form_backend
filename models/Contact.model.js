@@ -29,7 +29,6 @@ const contactSchema = new mongoose.Schema(
             type: Number,
             required: true,
             minlength: (9),
-            maxlength: (11)
         },
 
         link: {
