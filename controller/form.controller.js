@@ -8,10 +8,6 @@ module.exports.create = (req, res, next) => {
     Contact.create(newContact)
     .then(contact => {
         res.status(201).json(contact);
-        req.flash(
-            "flashMessage",
-            "Form successfully submitted!"
-        );
     })
     .catch(next)
 };

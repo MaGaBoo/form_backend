@@ -14,13 +14,16 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(flash()); // to show flash message after submit form
+
+/* app.use(flash()); // to show flash message after submit form
 app.use(sessionConfig); // need it to use flash
 
 app.use((req, res, next) => {
   res.locals.flashMessage = req.flash('flashMessage');
   next();
-});
+}); */
+
+
 /* Routes */
 
 const routes = require('./config/routes');

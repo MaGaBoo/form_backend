@@ -1,3 +1,5 @@
+// To use in case flash messages
+
 const expressSession = require("express-session");
 const MongoStore = require("connect-mongo");
 const { DB } = require("./db.config");
